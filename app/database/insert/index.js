@@ -1,11 +1,19 @@
-import { db } from '..'
+import { db } from "..";
 
-export const createDB = async() => {
-	let hotel = await db.one(`SELECT * FROM public.hotel`, []).then((res) => res).catch((err) => 'No Created'),
-		client = await db.one(`SELECT * FROM public.client`, []).then((res) => res).catch((err) => 'No Created')
+export const createDB = async () => {
+  let hotel = await db
+      .one(`SELECT * FROM public.hotel`, [])
+      .then((res) => res)
+      .catch((err) => "No Created"),
+    client = await db
+      .one(`SELECT * FROM public.client`, [])
+      .then((res) => res)
+      .catch((err) => "No Created");
 
-	if(hotel === 'No Created' && client === 'No Created'){
-		return await db.oneOrNone(`
+  if (hotel === "No Created" && client === "No Created") {
+    return await db
+      .oneOrNone(
+        `
 			CREATE TABLE IF NOT EXISTS public.hotel(
 				id uuid NOT NULL,
 				place character varying(255) COLLATE pg_catalog."default",
@@ -64,8 +72,10 @@ export const createDB = async() => {
 			INSERT INTO public.hotel(id, place, roomnumber, numberpeople, hotelstars, description, qualification, price) VALUES ('440c9eaa-3a2e-11ed-a261-0242ac120002', 'Chile', 4, 8, 3, 'Hotel', 1, 44.00);
 			INSERT INTO public.hotel(id, place, roomnumber, numberpeople, hotelstars, description, qualification, price) VALUES ('440c9f7c-3a2e-11ed-a261-0242ac120002', 'Bolivia', 1, 2, 2, 'Hotel', 2, 30.00);
 			INSERT INTO public.hotel(id, place, roomnumber, numberpeople, hotelstars, description, qualification, price) VALUES ('440ca058-3a2e-11ed-a261-0242ac120002', 'México', 2, 4, 3, 'Hotel', 3, 50.00);
-		`, [])
-			.then((res) => res)
-			.catch((err) => err)
-	}
-}
+		`,
+        []
+      )
+      .then((res) => res)
+      .catch((err) => err);
+  }
+};
