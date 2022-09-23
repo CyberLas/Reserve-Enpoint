@@ -1,16 +1,24 @@
-import { check, oneOf, validationResult, allOf } from 'express-validator'
+import { check, oneOf, validationResult } from "express-validator";
 
-import { app } from './index'
-import { hotelAll, hotelFilter } from '../database/query/hotel'
-import { clientAll, clientFilter } from '../database/query/client'
+import { app } from "./index";
+import { hotelAll, hotelFilter } from "../database/query/hotel";
+import { clientAll, clientFilter } from "../database/query/client";
+import { factureId } from "../database/query/facture";
+import {
+  reserveCreate,
+  reserveUpdate,
+  reserveDelete,
+} from "../database/query/reserve";
 
-const validateHeader = (
-	check("Authorization").isIn(["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"]),
-	check("Keep-Alive").isIn(["true"]),
-	check("Enpoint").isIn(["hotel", "client"])
-);
+const validateHeader = (endpoint) => {
+	return (
+		check("Authorization").isIn(["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"]),
+		check("Keep-Alive").isIn(["true"]),
+		check("Enpoint").isIn([endpoint])
+	);
+};
 
-app.get("/hotel", validateHeader, async (req, res) => {
+app.get("/hotel", validateHeader("hotel"), async (req, res) => {
 	try {
 		validationResult(req).throw();
 		res.json(requestSend(200, await hotelAll(), "Consulta Satisfactoria"));
@@ -19,7 +27,7 @@ app.get("/hotel", validateHeader, async (req, res) => {
 	}
 });
 
-app.post("/hotel", validateHeader, async (req, res) => {
+app.post("/hotel", validateHeader("hotel"), async (req, res) => {
 	try {
 		validationResult(req).throw();
 		let { filter, info } = req.body;
@@ -39,7 +47,7 @@ app.post("/hotel", validateHeader, async (req, res) => {
 	}
 });
 
-app.get("/client", validateHeader, async (req, res) => {
+app.get("/client", validateHeader("client"), async (req, res) => {
 	try {
 		validationResult(req).throw();
 		res.json(requestSend(200, await clientAll(), "Consulta Satisfactoria"));
@@ -48,7 +56,7 @@ app.get("/client", validateHeader, async (req, res) => {
 	}
 });
 
-app.post("/client", validateHeader, async (req, res) => {
+app.post("/client", validateHeader("client"), async (req, res) => {
 	try {
 		validationResult(req).throw();
 		let { filter, info } = req.body;
@@ -64,7 +72,83 @@ app.post("/client", validateHeader, async (req, res) => {
 			.status(400)
 			.json(requestSend(400, [], "Parámetros faltante ó inválidos"));
 	} catch (err) {
-		res.status(404).jjson(requestSend(404, [], "Faltan Parametros"));
+		res.status(404).json(requestSend(404, [], "Faltan Parametros"));
+	}
+});
+
+app.post("/facture", validateHeader("facture"), async (req, res) => {
+	try {
+		validationResult(req).throw();
+		let { id } = req.body;
+		if (uuidValidate(id))
+			return res.json(
+				requestSend(200, await factureId(id), "Consulta Satisfactoria")
+			);
+		res
+			.status(400)
+			.json(requestSend(400, [], "Parámetros faltante ó inválidos"));
+	} catch (err) {
+		res.status(404).json(requestSend(404, [], "Faltan Parametros"));
+	}
+});
+
+app.post("/reserve", validateHeader("reserve"), async (req, res) => {
+	try {
+		validationResult(req).throw();
+		let { paytype, mount, idclient, idhotel, coin, daystay } = req.body;
+		if (uuidValidate(idclient) && uuidValidate(idhotel))
+			return res.json(
+				requestSend(
+					200,
+					await reserveCreate(
+						uuidV1(),
+						paytype,
+						mount,
+						idclient,
+						idhotel,
+						coin,
+						daystay
+					),
+					"Consulta Satisfactoria"
+				)
+		);
+		res
+			.status(400)
+			.json(requestSend(400, [], "Parámetros faltante ó inválidos"));
+	} catch (err) {
+		res.status(404).json(requestSend(404, [], "Faltan Parametros"));
+	}
+});
+
+app.put("/reserve", validateHeader("reserve"), async (req, res) => {
+	try {
+		validationResult(req).throw();
+		let { id } = req.body;
+		if (uuidValidate(id))
+			return res.json(
+				requestSend(200, await reserveUpdate(id), "Consulta Actualizada")
+			);
+		res
+			.status(400)
+			.json(requestSend(400, [], "Parámetros faltante ó inválidos"));
+	} catch (err) {
+		res.status(404).json(requestSend(404, [], "Faltan Parametros"));
+	}
+});
+
+app.delete("/reserve", validateHeader("reserve"), async (req, res) => {
+	try {
+		validationResult(req).throw();
+		let { id } = req.body;
+		if (uuidValidate(id))
+			return res.json(
+				requestSend(200, await reserveDelete(id), "Consulta Actualizada")
+			);
+		res
+			.status(400)
+			.json(requestSend(400, [], "Parámetros faltante ó inválidos"));
+	} catch (err) {
+		res.status(404).json(requestSend(404, [], "Faltan Parametros"));
 	}
 });
 

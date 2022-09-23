@@ -1,46 +1,45 @@
-import { db } from '..'
+import { db } from "..";
 
-export const hotelAll = async() => {
+export const hotelAll = async () => {
 	return await db
-		.manyOrNone(`SELECT * FROM scheme.hotel`, [])
+		.manyOrNone(`SELECT * FROM public.hotel`, [])
 		.then((res) => res)
-		.catch((err) => err)
-}
+		.catch((err) => err);
+	};
 
-export const hotelFilter = async(filter, info) => {
-	let query = ''
-	switch(filter){
-		case 'place':
-			{
-				query = `SELECT * FROM scheme.hotel WHERE place LIKE $1`
-				info = `%${info}%`
-			}
+	export const hotelFilter = async (filter, info) => {
+	let query = "";
+	switch (filter) {
+		case "place":
+		{
+			query = `SELECT * FROM public.hotel WHERE place LIKE $1`;
+			info = `%${info}%`;
+		}
 		break;
-		case 'roomnumber':
-			{
-				query = `SELECT * FROM scheme.hotel WHERE roomnumber=$1`
-			}
+		case "roomnumber":
+		{
+			query = `SELECT * FROM public.hotel WHERE roomnumber=$1`;
+		}
 		break;
-		case 'hotelstars':
-			{
-				query = `SELECT * FROM scheme.hotel WHERE hotelstars=$1`
-			}
+		case "hotelstars":
+		{
+			query = `SELECT * FROM public.hotel WHERE hotelstars=$1`;
+		}
 		break;
-		case 'qualification':
-			{
-				query = `SELECT * FROM scheme.hotel WHERE qualification=$1`
-			}
+		case "qualification":
+		{
+			query = `SELECT * FROM public.hotel WHERE qualification=$1`;
+		}
 		break;
-		case 'price':
-			{
-				query = `SELECT * FROM scheme.hotel WHERE price=$1`
-			}
+		case "price":
+		{
+			query = `SELECT * FROM public.hotel WHERE price=$1`;
+		}
 		break;
 	}
-	
-	return await db
-				.manyOrNone(query, [info])
-				.then((res) => res)
-				.catch((err) => err)
-}
 
+	return await db
+		.manyOrNone(query, [info])
+		.then((res) => res)
+		.catch((err) => err);
+};

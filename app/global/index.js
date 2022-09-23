@@ -1,2 +1,3 @@
-import './logs'
-import './request'
+import "./logs";
+import "./request";
+import "./uuid";

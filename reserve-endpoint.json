@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "b236572a-8e4f-4e3d-a62b-5bfe709cb7dc",
+		"name": "reserve-endopint",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12671920"
+	},
+	"item": [
+		{
+			"name": "hotelAll",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+						"type": "text"
+					},
+					{
+						"key": "Keep-Alive",
+						"value": "true",
+						"type": "text"
+					},
+					{
+						"key": "Enpoint",
+						"value": "hotel",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/hotel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"hotel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hotelFilter",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+						"type": "text"
+					},
+					{
+						"key": "Keep-Alive",
+						"value": "true",
+						"type": "text"
+					},
+					{
+						"key": "Enpoint",
+						"value": "hotel",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"filter\": \"roomnumber\",\r\n    \"info\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/hotel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"hotel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clientAll",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+						"type": "text"
+					},
+					{
+						"key": "Keep-Alive",
+						"value": "true",
+						"type": "text"
+					},
+					{
+						"key": "Enpoint",
+						"value": "client",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/client",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clientFilter",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+						"type": "text"
+					},
+					{
+						"key": "Keep-Alive",
+						"value": "true",
+						"type": "text"
+					},
+					{
+						"key": "Enpoint",
+						"value": "client",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"filter\": \"dni\",\r\n    \"info\": \"80\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/client",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "factureId",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+						"type": "text"
+					},
+					{
+						"key": "Keep-Alive",
+						"value": "true",
+						"type": "text"
+					},
+					{
+						"key": "Enpoint",
+						"value": "facture",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"d67da4e6-e85b-4c8e-9e46-474fe2ea89bc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/facture",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"facture"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reserveCreate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+						"type": "text"
+					},
+					{
+						"key": "Keep-Alive",
+						"value": "true",
+						"type": "text"
+					},
+					{
+						"key": "Enpoint",
+						"value": "reserve",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"paytype\": \"MASTERCARD\",\r\n    \"mount\": \"60\",\r\n    \"idclient\": \"364a680a-3a34-11ed-a261-0242ac120002\",\r\n    \"idhotel\": \"440c993c-3a2e-11ed-a261-0242ac120002\",\r\n    \"coin\": \"Dólares\",\r\n    \"daystay\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/reserve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"reserve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reserveUpdate",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+						"type": "text"
+					},
+					{
+						"key": "Keep-Alive",
+						"value": "true",
+						"type": "text"
+					},
+					{
+						"key": "Enpoint",
+						"value": "reserve",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"paytype\": \"MASTERCARD\",\r\n    \"mount\": \"60\",\r\n    \"idclient\": \"364a680a-3a34-11ed-a261-0242ac120002\",\r\n    \"idhotel\": \"440c993c-3a2e-11ed-a261-0242ac120002\",\r\n    \"coin\": \"Dólares\",\r\n    \"daystay\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/reserve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"reserve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reserveDelete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+						"type": "text"
+					},
+					{
+						"key": "Keep-Alive",
+						"value": "true",
+						"type": "text"
+					},
+					{
+						"key": "Enpoint",
+						"value": "reserve",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"132fd480-3a80-11ed-902a-77edc8a84a49\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/reserve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"reserve"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
