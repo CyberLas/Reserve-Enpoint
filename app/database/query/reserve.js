@@ -1,6 +1,14 @@
 import { db } from "..";
 
-export const reserveCreate = async (id, paytype, mount, idclient, idhotel, coin, daystay) => {
+export const reserveCreate = async (
+	id,
+	paytype,
+	mount,
+	idclient,
+	idhotel,
+	coin,
+	daystay
+) => {
 	return await db
 		.oneOrNone(
 			`INSERT INTO public.facture(id, paytype, mount, idclient, idhotel, coin, daystay, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING*`,
@@ -8,7 +16,7 @@ export const reserveCreate = async (id, paytype, mount, idclient, idhotel, coin,
 		)
 		.then((res) => res)
 		.catch((err) => err);
-}
+};
 
 export const reserveUpdate = async (id) => {
 	return await db
@@ -18,7 +26,7 @@ export const reserveUpdate = async (id) => {
 		)
 		.then((res) => res)
 		.catch((err) => err);
-}
+};
 
 export const reserveDelete = async (id) => {
 	return await db
@@ -28,4 +36,4 @@ export const reserveDelete = async (id) => {
 		)
 		.then((res) => res)
 		.catch((err) => err);
-}
+};
