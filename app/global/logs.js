@@ -1,12 +1,12 @@
 // LOGS
-import Log from 'debug-level'
+import Log from "debug-level";
 
-const log = new Log('reserve-enpoint')
+const log = new Log("reserve-enpoint");
 
-globalThis.logErro = (txt) => log.error(txt)
+globalThis.logErro = (txt) => log.error(txt);
 
-globalThis.logWarn = (txt) => log.warn(txt)
+globalThis.logWarn = (txt) => log.warn(txt);
 
-globalThis.logInfo = (txt) => log.info(txt)
+globalThis.logInfo = (txt) => log.info(txt);
 
-globalThis.logNote = (txt) => log.log(txt)
+globalThis.logNote = (txt) => log.log(txt);
