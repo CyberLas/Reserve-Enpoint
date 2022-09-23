@@ -2,7 +2,7 @@ import { db } from '..'
 
 export const hotelAll = async() => {
 	return await db
-		.manyOrNone(`SELECT * FROM scheme.hotel`, [])
+		.manyOrNone(`SELECT * FROM public.hotel`, [])
 		.then((res) => res)
 		.catch((err) => err)
 }
@@ -12,28 +12,28 @@ export const hotelFilter = async(filter, info) => {
 	switch(filter){
 		case 'place':
 			{
-				query = `SELECT * FROM scheme.hotel WHERE place LIKE $1`
+				query = `SELECT * FROM public.hotel WHERE place LIKE $1`
 				info = `%${info}%`
 			}
 		break;
 		case 'roomnumber':
 			{
-				query = `SELECT * FROM scheme.hotel WHERE roomnumber=$1`
+				query = `SELECT * FROM public.hotel WHERE roomnumber=$1`
 			}
 		break;
 		case 'hotelstars':
 			{
-				query = `SELECT * FROM scheme.hotel WHERE hotelstars=$1`
+				query = `SELECT * FROM public.hotel WHERE hotelstars=$1`
 			}
 		break;
 		case 'qualification':
 			{
-				query = `SELECT * FROM scheme.hotel WHERE qualification=$1`
+				query = `SELECT * FROM public.hotel WHERE qualification=$1`
 			}
 		break;
 		case 'price':
 			{
-				query = `SELECT * FROM scheme.hotel WHERE price=$1`
+				query = `SELECT * FROM public.hotel WHERE price=$1`
 			}
 		break;
 	}

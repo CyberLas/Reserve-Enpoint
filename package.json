@@ -2,7 +2,7 @@
 	"name": "reserve-enpoint",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "endpoint.js",
 	"scripts": {
 		"dev": "nodemon app/app.js --exec babel-node"
 	},
@@ -23,6 +23,7 @@
 		"express-validator": "^6.14.2",
 		"http": "^0.0.1-security",
 		"morgan": "^1.10.0",
-		"pg-promise": "^10.12.0"
+		"pg-promise": "^10.12.0",
+		"uuid": "^9.0.0"
 	}
 }

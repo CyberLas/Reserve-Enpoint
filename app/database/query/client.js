@@ -2,7 +2,7 @@ import { db } from '..'
 
 export const clientAll = async() => {
     return await db
-        .manyOrNone(`SELECT * FROM scheme.client`, [])
+        .manyOrNone(`SELECT * FROM public.client`, [])
         .then((res) => res)
         .catch((err) => err)
 }
@@ -12,18 +12,18 @@ export const clientFilter = async(filter, info) => {
 	switch(filter){
 		case 'dni':
 			{
-				query = `SELECT * FROM scheme.client WHERE dni LIKE $1`
+				query = `SELECT * FROM public.client WHERE dni LIKE $1`
 				info = `%${info}%`
 			}
 		break
 		case 'first':
 			{
-				query = `SELECT * FROM scheme.client WHERE first LIKE $1`
+				query = `SELECT * FROM public.client WHERE first LIKE $1`
 			}
 		break
 		case 'last':
 			{
-				query = `SELECT * FROM scheme.client WHERE last LIKE $1`
+				query = `SELECT * FROM public.client WHERE last LIKE $1`
 			}
 		break
 	}

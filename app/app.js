@@ -1,6 +1,7 @@
 // IMPORT FUNCTION GLOBAL
 import '../app/global'
 import '../app/server/routes'
+import { createDB } from './database/insert'
 
 // IMPORT LIBRARY 
 import { createServer }			from 'http'
@@ -9,8 +10,12 @@ import { createServer }			from 'http'
 import { app } from './server'
 import { PORT, URL } from './constant'
 
+// INITIAL DB
+createDB()
+
 // INITIAL SERVER
 const serverApp	= createServer(app)
+
 
 // SERVER LISTEN
 serverApp.listen(PORT, () => {

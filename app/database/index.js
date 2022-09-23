@@ -1,7 +1,7 @@
 import	pgPromise	from 'pg-promise'
 import	{ POSTGRESHOST, POSTGRESPORT, POSTGRESNAME, POSTGRESUSER, POSTGRESPASS } from '../constant'
 
-const pgp	= pgPromise({schema: 'scheme'})
+const pgp	= pgPromise({schema: 'public'})
 
 export const db = pgp({
 	host					: POSTGRESHOST,
