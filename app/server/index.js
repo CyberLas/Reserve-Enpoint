@@ -12,9 +12,9 @@ App.use(bodyParser.raw());
 
 // MORGAN
 App.use(
-  morgan(
-    "  LOG reserve-enpoint ↩️  REQUEST -> :method(:status)  URL -> :url  TIME -> :response-time ms"
-  )
+	morgan(
+		"  LOG reserve-enpoint ↩️  REQUEST -> :method(:status)  URL -> :url  TIME -> :response-time ms"
+	)
 );
 
 export const app = App;
